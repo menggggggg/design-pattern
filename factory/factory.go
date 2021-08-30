@@ -5,25 +5,23 @@ import (
 )
 
 type Product interface {
-	show() string
+	showName() string
 }
 
 type ConcreteProduct1 struct {
 	name string
 }
 
-func (c *ConcreteProduct1) show() string {
-	fmt.Printf("ConcreteProduct1 Name is %s \n", c.name)
-	return c.name
+func (c *ConcreteProduct1) showName() string {
+	return fmt.Sprint("Name is ", c.name)
 }
 
 type ConcreteProduct2 struct {
 	name string
 }
 
-func (c *ConcreteProduct2) show() string {
-	fmt.Printf("ConcreteProduct2 Name is %s \n", c.name)
-	return c.name
+func (c *ConcreteProduct2) showName() string {
+	return fmt.Sprint("Name is ", c.name)
 }
 
 func MakeProduct(kind string) Product {

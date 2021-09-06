@@ -3,20 +3,23 @@ package singleton
 import "sync"
 
 var (
-	instance *singleObject
-	once     sync.Once
+	singleton *Singleton
+	once      sync.Once
 )
 
-type singleObject struct {
+func init() {
+	//	singleton = &Singleton{} 饿汉模式
 }
 
-func (s *singleObject) message() string {
-	return "singleton object!"
+type Singleton struct {
 }
 
-func GetSingleInstance() *singleObject {
-	once.Do(func() {
-		instance = &singleObject{}
-	})
-	return instance
+func GetSingleInstance() *Singleton {
+	// 懒汉模式
+	if singleton == nil {
+		once.Do(func() {
+			singleton = &Singleton{}
+		})
+	}
+	return singleton
 }
